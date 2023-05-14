@@ -9,20 +9,35 @@ function createRestaurant(nameOfRestaurant){
  return restaurant
  console.log(restaurant)
  }
- 
+ // iteration 1:
 //  function addMenuItem(restaurant, newLunchItem){
 //  restaurant.menus.lunch[0] = newLunchItem
 //  return restaurant.menus[0]
 // }
- 
+
+//  iteration 2:
+// function addMenuItem(restaurant, newMenuItem) {
+//   if (newMenuItem.type === "breakfast"){
+//     restaurant.menus.breakfast.push(newMenuItem)
+//     return restaurant.menus.breakfast
+//   } else if (newMenuItem.type === "lunch") {
+//     restaurant.menus.lunch.push(newMenuItem)
+//     return restaurant.menus.lunch
+//   } else if (newMenuItem.type === "dinner") {
+//     restaurant.menus.dinner.push(newMenuItem)
+//     return restaurant.menus.dinner
+//   }
+// }
+
+// iteration 3:
 function addMenuItem(restaurant, newMenuItem) {
-  if (newMenuItem.type === "breakfast" ){
+  if (newMenuItem.type === "breakfast" && !restaurant.menus.breakfast.includes(newMenuItem)){
     restaurant.menus.breakfast.push(newMenuItem)
     return restaurant.menus.breakfast
-  } else if (newMenuItem.type === "lunch") {
+  } else if (newMenuItem.type === "lunch" && !restaurant.menus.lunch.includes(newMenuItem)) {
     restaurant.menus.lunch.push(newMenuItem)
     return restaurant.menus.lunch
-  } else if (newMenuItem.type === "dinner") {
+  } else if (newMenuItem.type === "dinner" && !restaurant.menus.dinner.includes(newMenuItem)) {
     restaurant.menus.dinner.push(newMenuItem)
     return restaurant.menus.dinner
   }
