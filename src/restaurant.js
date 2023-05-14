@@ -46,9 +46,25 @@ function addMenuItem(restaurant, newMenuItem) {
 
  
  
-function removeMenuItem(){
+function removeMenuItem(restaurant, existingMenuItem, whichMenu){
+  console.log("restaurant: ", restaurant)
 
+  if(whichMenu === "breakfast") {
+    restaurant = restaurant.menus.breakfast
+  } else if (whichMenu ==="lunch") {
+    restaurant = restaurant.menus.lunch
+  } else if (whichMenu ==="dinner") {
+    restaurant = restaurant.menus.dinner
+  }
+var itemToFind = existingMenuItem
+var foundIndex = restaurant.findIndex(el =>  el == itemToFind)
+restaurant.splice(foundIndex, 1)
+restaurant = 
+console.log("restaurant ", restaurant)
+return  `No one is eating our ${existingMenuItem} - it has been removed from the ${whichMenu} menu!`
 }
+
+
 function checkForFood(){
 
 }
