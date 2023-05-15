@@ -4,8 +4,6 @@ function createRestaurant(nameOfRestaurant){
  }
   restaurant.name = nameOfRestaurant
 
- console.log(restaurant)
- console.log(restaurant.menus)
  return restaurant
  console.log(restaurant)
  }
@@ -42,30 +40,78 @@ function addMenuItem(restaurant, newMenuItem) {
     restaurant.menus.dinner.push(newMenuItem)
     // return restaurant.menus.dinner
   }
-  console.log("restaurant.menus: ", restaurant.menus)
-  return restaurant.menus
   
 }
   
-// if (!restaurant.menus.breakfast.includes(existingMenuItem) && !restaurant.menus.lunch.includes(existingMenuItem) && !restaurant.menus.dinner.includes(existingMenuItem )) {
-//   return error1} 
+
 function removeMenuItem(restaurant, existingMenuItem, whichMenu){
-  
+  var onMenu = false
+  var itemToFind = existingMenuItem
   var error1 = `Sorry, we don't sell ${existingMenuItem}, try adding a new recipe!`
-  if(whichMenu === "breakfast") {
-    restaurant = restaurant.menus.breakfast;
+  var error2 =  `No one is eating our ${existingMenuItem} - it has been removed from the ${whichMenu} menu!`
+  
+  for (var i = 0; i < restaurant.menus.breakfast.length; i++) {
+    if (whichMenu === "breakfast") {
+      if (restaurant.menus.breakfast[i].name !== existingMenuItem) {
+      onMenu = false
+      }  else {
+          onMenu = true
+          var foundIndex = restaurant.menus.breakfast.findIndex(el =>  el == itemToFind)
+          restaurant.menus.breakfast.splice(foundIndex, 1)
+          return error2
+      }
+    }
   }
-  if (whichMenu ==="lunch") {
-    restaurant = restaurant.menus.lunch
+  for (var i = 0; i < restaurant.menus.lunch.length; i++) {
+    if (whichMenu === "lunch") {
+        if (restaurant.menus.lunch[i].name !== existingMenuItem) {
+        onMenu = false
+        }  else {
+          onMenu = true
+          var foundIndex = restaurant.menus.lunch.findIndex(el =>  el == itemToFind)
+          restaurant.menus.lunch.splice(foundIndex, 1)
+          return error2
+        }
+      }
   }
-  if (whichMenu ==="dinner" ) {
-    restaurant = restaurant.menus.dinner
-  } 
-var itemToFind = existingMenuItem
-var foundIndex = restaurant.findIndex(el =>  el == itemToFind)
-restaurant.splice(foundIndex, 1)
-return  `No one is eating our ${existingMenuItem} - it has been removed from the ${whichMenu} menu!`
+  for (var i = 0; i < restaurant.menus.dinner.length; i++) {
+    if (whichMenu === "dinner") {
+        if (restaurant.menus.dinner[i].name !== existingMenuItem) {
+        onMenu = false
+        }  else {
+          onMenu = true
+          var foundIndex = restaurant.menus.dinner.findIndex(el =>  el == itemToFind)
+          restaurant.menus.dinner.splice(foundIndex, 1)
+          return error2
+        }
+      }
+  }
+  if (onMenu === false) {return error1} 
+ 
 }
+
+
+  //passes test 1-3
+// if (!restaurant.menus.breakfast.includes(existingMenuItem) && !restaurant.menus.lunch.includes(existingMenuItem) && !restaurant.menus.dinner.includes(existingMenuItem )) {
+// //   return error1} 
+// function removeMenuItem(restaurant, existingMenuItem, whichMenu){
+  
+//   var error1 = `Sorry, we don't sell ${existingMenuItem}, try adding a new recipe!`
+//   var error2 =  `No one is eating our ${existingMenuItem} - it has been removed from the ${whichMenu} menu!`
+//   if(whichMenu === "breakfast") {
+//     restaurant = restaurant.menus.breakfast;
+//   }
+//   if (whichMenu ==="lunch") {
+//     restaurant = restaurant.menus.lunch
+//   }
+//   if (whichMenu ==="dinner" ) {
+//     restaurant = restaurant.menus.dinner
+//   } 
+// var itemToFind = existingMenuItem
+// var foundIndex = restaurant.findIndex(el =>  el == itemToFind)
+// restaurant.splice(foundIndex, 1)
+// return error2
+// }
 
 // //Passes iteration 1:
 // function checkForFood(restaurant, foodItem) {
@@ -81,12 +127,11 @@ return  `No one is eating our ${existingMenuItem} - it has been removed from the
 //   }
 //  }
 
-// passes iteration 1 & 2: 
+// passes all 4 tests: 
 function checkForFood(restaurant, foodItem) {
   var unavailableResponse = `Sorry, we aren't serving ${foodItem.name} today.`
   var weHaveIt = false;
   for (var i = 0; i < restaurant.menus.breakfast.length; i++) {
-    console.log("restaurant.menus: ", restaurant.menus)
     if (restaurant.menus.breakfast[i] === foodItem){
       weHaveIt = true
       }
@@ -105,18 +150,6 @@ function checkForFood(restaurant, foodItem) {
       return unavailableResponse
     } else return`Yes, we're serving ${foodItem.name} today!`
 }
-
-
-
-//  // iteration 3:
-// function checkForFood(restaurant, foodItem){
-//   var unavailableResponse = `Sorry, we aren't serving ${foodItem.name} today.`
-//   return unavailableResponse
-// }
-
-// // iteration 4:
-// function checkForFood(restaurant, foodItem){
-// }
 
 module.exports = {
   createRestaurant, 
