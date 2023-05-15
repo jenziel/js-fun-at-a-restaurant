@@ -235,6 +235,7 @@ describe("restaurant.js", function() {
   
       var foodConfirmation1 = checkForFood(restaurant, foodItem1);
       var foodConfirmation2 = checkForFood(restaurant, foodItem2);
+    
   
       assert.equal(foodConfirmation1, "Yes, we're serving Cinnamon Rolls today!");
       assert.equal(foodConfirmation2, "Yes, we're serving Cherry Danishes today!");
